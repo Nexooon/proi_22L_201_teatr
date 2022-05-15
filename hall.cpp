@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Hall::Hall(unsigned int nr, unsigned int s)
+Hall::Hall(unsigned int nr = 1, unsigned int s = 50)
 {
     set_number(nr);
     set_number(s);

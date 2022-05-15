@@ -15,13 +15,22 @@ class Data
 
 public:
     Data(vector<Hall> halls, vector<Play> plays);
+    Data(const Data *data);
+    virtual ~Data();
 
-    void read_halls(string halls_path);
-    void read_plays(string plays_path);
+    void read(string path);
+    // void read_plays(string plays_path);
 
-    // string hallspath, playspath;
+    int halls_size();
+    int plays_size();
 
-    // Data(string hallspath, string playspath);
+    friend void add_play_obj(vector<Play> plays, string title, string price, string time);
+    friend void add_hall_obj(vector<Hall> halls, string hnr, string hseats);
+    friend int get_header(string line);
 };
+
+void add_play_obj(vector<Play> plays, string title, string price, string time);
+void add_hall_obj(vector<Hall> halls, string hnr, string hseats);
+int get_header(string line);
 
 #endif
