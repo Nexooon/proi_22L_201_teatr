@@ -6,7 +6,7 @@ using namespace std;
 Hall::Hall(unsigned int nr = 1, unsigned int s = 50)
 {
     set_number(nr);
-    set_number(s);
+    set_seats(s);
 }
 
 unsigned int Hall::get_number()
@@ -21,24 +21,24 @@ unsigned int Hall::get_seats()
 
 void Hall::set_number(unsigned int new_number)
 {
-    if (new_number != 0)
+    if (new_number == 0)
     {
-        number = new_number;
+        throw invalid_argument("Number must be positive!");
     }
     else
     {
-        throw invalid_argument("Number must be positive!");
+        number = new_number;
     }
 }
 
 void Hall::set_seats(unsigned int new_seats)
 {
-    if (new_seats != 0)
+    if (new_seats == 0)
     {
-        seats = new_seats;
+        throw invalid_argument("Number of seats must be positive!");
     }
     else
     {
-        throw invalid_argument("Number of seats must be positive!");
+        seats = new_seats;
     }
 }

@@ -9,6 +9,7 @@ Play::Play(string t, unsigned int pric, unsigned int d)
     set_price(pric);
     set_duration(d);
 }
+Play::~Play(){};
 
 string Play::get_title()
 {
@@ -52,4 +53,10 @@ void Play::set_duration(unsigned int new_duration)
     {
         throw invalid_argument("Duration must be a positive number!");
     }
+}
+
+std::ostream &operator<<(ostream &os, const Play &playy)
+{
+    os << "Play: " << playy.title << ", price: " << playy.price << ", duration: " << playy.duration << endl;
+    return os;
 }

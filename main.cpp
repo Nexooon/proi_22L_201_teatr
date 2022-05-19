@@ -26,12 +26,19 @@ int main(int argc, char *argv[])
 
     vector<Hall> halls;
     vector<Play> plays;
-    Data data(halls, plays);
-    data.read(path1);
-    data.read(path2);
+    vector<Comedy> comedies;
+    vector<Drama> dramas;
+    vector<Tragedy> tragedies;
+    Data data(halls, plays, comedies, dramas, tragedies);
+
+    data.read_halls(path1);
+    data.read_plays(path2);
 
     cout << data.halls_size();
     cout << data.plays_size();
+    cout << data.comedies_size();
+    cout << data.dramas_size();
+    cout << data.tragedies_size();
 }
 
 // int main()
