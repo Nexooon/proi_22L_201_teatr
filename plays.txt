@@ -1,7 +1,24 @@
-plays
 Manga
-80
-60
+120 100 1
 Tara
-90
-120
+120 80 1
+Lana
+130 90 2 5
+Dungo
+100 50 3 murder
+Lana
+110 60 4 Jack
+Hustecznik
+120 100 2 4
+Rama
+120 80 3 double_kill
+Ksiega
+130 90 2 6
+Marynarka
+120 100 4 Talon
+Teczka
+120 80 3 theft
+Miecz
+130 90 4 betrayal
+Tala
+120 100 1
