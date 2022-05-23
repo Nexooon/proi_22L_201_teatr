@@ -38,7 +38,11 @@ public:
     void set_month(int new_month);
     void set_year(int new_year);
 
+    Date &operator++();
+
     void check(int day, int month, int year);
+
+    int get_days_in_month(int month);
 };
 
 #endif

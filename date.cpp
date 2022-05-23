@@ -55,6 +55,40 @@ void Date::check(int day, int month, int year)
 {
     int days_in_month;
 
+    days_in_month = get_days_in_month(month);
+
+    if (year < 1)
+        throw invalid_argument("Invalid year!");
+    if (month < 1 || month > 12)
+        throw invalid_argument("Invalid month!");
+    if (day < 1 || day > days_in_month)
+        throw invalid_argument("Invalid day!");
+}
+
+Date &Date::operator++()
+{
+    day++;
+
+    int days_in_current_month = get_days_in_month(month);
+
+    if (day > days_in_current_month)
+    {
+        day = 1;
+        month++;
+    }
+    if (month > 12)
+    {
+        month = 1;
+        year++;
+    }
+
+    return *this;
+}
+
+int Date::get_days_in_month(int month)
+{
+    int days_in_month;
+
     switch (month)
     {
     case january:
@@ -81,11 +115,5 @@ void Date::check(int day, int month, int year)
         break;
     }
     }
-
-    if (year < 1)
-        throw invalid_argument("Invalid year!");
-    if (month < 1 || month > 12)
-        throw invalid_argument("Invalid month!");
-    if (day < 1 || day > days_in_month)
-        throw invalid_argument("Invalid day!");
+    return days_in_month;
 }
