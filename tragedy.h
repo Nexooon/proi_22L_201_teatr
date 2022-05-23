@@ -1,5 +1,5 @@
-#ifndef tragedy
-#define tragedy
+#ifndef __tragedy
+#define __tragedy
 
 #include <iostream>
 #include "play.h"

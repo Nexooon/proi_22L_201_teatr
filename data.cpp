@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <list>
 #include "data.h"
 #include "hall.h"
 #include "play.h"
@@ -35,10 +36,11 @@ void Data::read_halls(string path)
         exit(0);
     }
     string nr, seats;
+    unsigned int taken = 0;
     while (file >> nr)
     {
         file >> seats;
-        Hall hall_obj(stoi(nr), stoi(seats));
+        Hall hall_obj(stoi(nr), stoi(seats), taken);
         halls.push_back(hall_obj);
     }
     file.close();
@@ -113,120 +115,35 @@ int Data::tragedies_size()
     return tragedies.size();
 }
 
-// void Data::read(string path)
-// {
-//     fstream myfile;
+void Data::add_random_play_to_repertuar(Repertuar repertuar) // adds 2 plays
+{
+    for (int i; i < 2; i++)
+    {
+        int x = rand() % 4 + 1;
 
-//     myfile.open(path, ios::in);
-
-//     if (myfile.good() == false)
-//     {
-//         throw invalid_argument("File does not exist!");
-//         exit(0);
-//     }
-
-//     string line;
-//     int nline = 1;
-//     int header;
-//     string hall_obj_nr, hall_obj_seats, play_obj_title, play_obj_price, play_obj_time;
-
-//     if (myfile.is_open())
-//     {
-//         while (getline(myfile, line))
-//         {
-//             if (nline == 1)
-//             {
-//                 header = get_header(line);
-//                 nline++;
-//                 continue;
-//             }
-
-//             switch (header)
-//             {
-
-//                 // halls
-
-//             case 1:
-//             {
-//                 switch (nline)
-//                 {
-//                 case 2:
-//                     hall_obj_nr = line;
-//                     break;
-//                 case 3:
-//                     hall_obj_seats = line;
-//                     break;
-//                 }
-
-//                 if (nline == 3)
-//                 {
-
-//                     add_hall_obj(halls, hall_obj_nr, hall_obj_seats);
-//                     // Hall hall_obj(stoi(hall_obj_nr), stoi(hall_obj_seats));
-//                     // halls.push_back(hall_obj);
-//                     nline = 1;
-//                 }
-//                 nline++;
-//                 break;
-//             }
-
-//                 // plays
-
-//             case 2:
-//             {
-//                 switch (nline)
-//                 {
-//                 case 2:
-//                     play_obj_title = line;
-//                     break;
-//                 case 3:
-//                     play_obj_price = line;
-//                     break;
-//                 case 4:
-//                     play_obj_time = line;
-//                     break;
-//                 }
-
-//                 if (nline == 4)
-//                 {
-//                     add_play_obj(plays, play_obj_title, play_obj_price, play_obj_time);
-//                     // Play play_obj(play_obj_title, stoi(play_obj_price), stoi(play_obj_time));
-//                     // plays.push_back(play_obj);
-//                     nline = 1;
-//                 }
-//                 nline++;
-//                 break;
-//             }
-//             }
-//         }
-//         myfile.close();
-//     }
-// }
-
-// void add_hall_obj(vector<Hall> halls, string hnr, string hseats)
-// {
-//     Hall hall_obj(stoi(hnr), stoi(hseats));
-//     halls.push_back(hall_obj);
-// }
-
-// void add_play_obj(vector<Play> plays, string title, string price, string time)
-// {
-//     Play play_obj(title, stoi(price), stoi(time));
-//     plays.push_back(play_obj);
-// }
-
-// int get_header(string line)
-// {
-//     if (line == "halls")
-//     {
-//         return 1;
-//     }
-//     else if (line == "plays")
-//     {
-//         return 2;
-//     }
-//     else
-//     {
-//         throw invalid_argument("Wrong header!");
-//     }
-// }
+        if (x == 1)
+        {
+            int tmp = rand() % plays.size() + 1;
+            repertuar.add_play(plays[tmp]);
+        }
+        else if (x == 2)
+        {
+            int tmp = rand() % comedies.size() + 1;
+            repertuar.add_comedy(comedies[tmp]);
+        }
+        else if (x == 3)
+        {
+            int tmp = rand() % dramas.size() + 1;
+            repertuar.add_drama(dramas[tmp]);
+        }
+        else if (x == 4)
+        {
+            int tmp = rand() % tragedies.size() + 1;
+            repertuar.add_tragedy(tragedies[tmp]);
+        }
+        else
+        {
+            throw invalid_argument("Adding random doesnt work right!");
+        }
+    }
+}

@@ -8,11 +8,13 @@
 #include "comedy.h"
 #include "drama.h"
 #include "tragedy.h"
+#include "repertuar.h"
 
 using namespace std;
 
 class Data
 {
+protected:
     vector<Hall> halls;
     vector<Play> plays;
     vector<Comedy> comedies;
@@ -32,6 +34,8 @@ public:
     int comedies_size();
     int dramas_size();
     int tragedies_size();
+
+    void add_random_play_to_repertuar(Repertuar repertuar);
 };
 
 #endif

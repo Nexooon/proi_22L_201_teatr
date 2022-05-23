@@ -1,5 +1,5 @@
-#ifndef play
-#define play
+#ifndef __play
+#define __play
 
 #include <iostream>
 

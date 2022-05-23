@@ -1,5 +1,5 @@
-#ifndef drama
-#define drama
+#ifndef __drama
+#define __drama
 
 #include <iostream>
 #include "play.h"

@@ -3,11 +3,16 @@
 
 using namespace std;
 
-Hall::Hall(unsigned int nr = 1, unsigned int s = 50)
+Hall::Hall(unsigned int nr = 1, unsigned int s = 50, unsigned int ts = 0)
 {
     set_number(nr);
     set_seats(s);
+    set_taken_seats(ts);
 }
+
+Hall::~Hall(){};
+
+Hall::Hall(){};
 
 unsigned int Hall::get_number()
 {
@@ -17,6 +22,11 @@ unsigned int Hall::get_number()
 unsigned int Hall::get_seats()
 {
     return seats;
+}
+
+unsigned int Hall::get_taken_seats()
+{
+    return taken;
 }
 
 void Hall::set_number(unsigned int new_number)
@@ -41,4 +51,9 @@ void Hall::set_seats(unsigned int new_seats)
     {
         seats = new_seats;
     }
+}
+
+void Hall::set_taken_seats(unsigned int new_taken_seats)
+{
+    taken = new_taken_seats;
 }
