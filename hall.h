@@ -11,7 +11,7 @@ class Hall
 
 public:
     Hall(unsigned int number, unsigned int seats, unsigned int taken);
-    ~Hall();
+    virtual ~Hall();
     Hall();
 
     unsigned int get_number();

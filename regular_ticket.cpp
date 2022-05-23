@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-//no default constructor for Hall and Price
+// no default constructor for Hall and Price
 RegularTicket::RegularTicket(int price, Hall h, Play p)
 {
     base_price = price;
@@ -47,9 +47,9 @@ Play RegularTicket::get_play() const
     return ticket_play;
 }
 
-//dodac wypisywanie hall i play lub roziwazac problem braku mozliwosci odwolania do zmiennych title i number
-ostream& operator<<(ostream& os, const RegularTicket& ticket)
+// dodac wypisywanie hall i play lub roziwazac problem braku mozliwosci odwolania do zmiennych title i number
+ostream &operator<<(ostream &os, const RegularTicket &ticket)
 {
-    os << "Play: " << ticket.ticket_play << " Hall: " << ticket.ticket_hall.number << " Price: " << ticket.calculate_price();
+    os << "Play: " << ticket.get_play().get_title() << " Hall: " << ticket.get_hall().get_number() << " Price: " << ticket.calculate_price();
     return os;
 }

@@ -117,7 +117,7 @@ int Data::tragedies_size()
 
 void Data::add_random_play_to_repertuar(Repertuar repertuar) // adds 2 plays
 {
-    for (int i; i < 2; i++)
+    for (int i = 0; i < 2; i++)
     {
         int x = rand() % 4 + 1;
 

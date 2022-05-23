@@ -9,6 +9,7 @@ Play::Play(string t, unsigned int pric, unsigned int d)
     set_price(pric);
     set_duration(d);
 }
+
 Play::~Play(){};
 
 string Play::get_title()

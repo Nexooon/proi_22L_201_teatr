@@ -3,6 +3,8 @@
 #include "data.h"
 #include "play.h"
 #include "hall.h"
+#include "date.h"
+#include "theatre.h"
 
 using namespace std;
 
@@ -31,14 +33,19 @@ int main(int argc, char *argv[])
     vector<Tragedy> tragedies;
     Data data(halls, plays, comedies, dramas, tragedies);
 
+    Date date(1, 5, 2010);
+    ++date;
+
+    // Theatre theatre(data);
+
     data.read_halls(path1);
     data.read_plays(path2);
 
-    cout << data.halls_size();
-    cout << data.plays_size();
-    cout << data.comedies_size();
-    cout << data.dramas_size();
-    cout << data.tragedies_size();
+    // cout << data.halls_size();
+    // cout << data.plays_size();
+    // cout << data.comedies_size();
+    // cout << data.dramas_size();
+    // cout << data.tragedies_size();
 }
 
 // int main()

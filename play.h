@@ -12,7 +12,7 @@ protected:
     unsigned int duration, price;
 
 public:
-    Play(string title, unsigned int price, unsigned int duration);
+    Play(string title = "title", unsigned int price = 100, unsigned int duration = 120);
     virtual ~Play();
 
     string get_title();

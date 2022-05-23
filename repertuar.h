@@ -17,13 +17,9 @@ class Repertuar
 {
 public:
     Hall hall_obj;
-    // vector<Play> playss;
-    // vector<Comedy> comediess;
-    // vector<Drama> dramass;
-    // vector<Tragedy> tragediess;
+
     list<unique_ptr<Play>> plays_list;
 
-    // Repertuar(Hall h, vector<Play> playss, vector<Comedy> comediess, vector<Drama> dramass, vector<Tragedy> tragediess);
     Repertuar(Hall hall);
     ~Repertuar();
 
