@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Hall::Hall(unsigned int nr = 1, unsigned int s = 50, unsigned int ts = 0)
+Hall::Hall(unsigned int nr, unsigned int s, unsigned int ts)
 {
     set_number(nr);
     set_seats(s);
@@ -12,7 +12,7 @@ Hall::Hall(unsigned int nr = 1, unsigned int s = 50, unsigned int ts = 0)
 
 Hall::~Hall(){};
 
-Hall::Hall(){};
+// Hall::Hall(){};
 
 unsigned int Hall::get_number()
 {

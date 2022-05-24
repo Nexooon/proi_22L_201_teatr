@@ -10,9 +10,9 @@ class Hall
     unsigned int number, seats, taken;
 
 public:
-    Hall(unsigned int number, unsigned int seats, unsigned int taken);
+    Hall(unsigned int number=1, unsigned int seats=50, unsigned int taken=0);
     virtual ~Hall();
-    Hall();
+    // Hall();
 
     unsigned int get_number();
     unsigned int get_seats();
