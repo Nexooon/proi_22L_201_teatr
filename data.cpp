@@ -1,10 +1,16 @@
 #include <iostream>
 #include <fstream>
 #include <list>
+#include <random>
 #include "data.h"
-#include "hall.h"
 #include "play.h"
 #include "comedy.h"
+#include "drama.h"
+#include "tragedy.h"
+#include "hall.h"
+#include "date.h"
+#include "repertuar.h"
+#include "theatre.h"
 
 using namespace std;
 
@@ -119,27 +125,29 @@ void Data::add_random_play_to_repertuar(Repertuar repertuar) // adds 2 plays
 {
     for (int i = 0; i < 2; i++)
     {
-        int x = rand() % 4 + 1;
-
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<> dist(1, 6);
+        int x = dist(gen);
         if (x == 1)
         {
-            int tmp = rand() % plays.size() + 1;
-            repertuar.add_play(plays[tmp]);
+            uniform_int_distribution<> dist(1, (int)plays.size());
+            repertuar.add_play(plays[dist(gen)]);
         }
         else if (x == 2)
         {
-            int tmp = rand() % comedies.size() + 1;
-            repertuar.add_comedy(comedies[tmp]);
+            uniform_int_distribution<> dist(1, (int)comedies.size());
+            repertuar.add_comedy(comedies[dist(gen)]);
         }
         else if (x == 3)
         {
-            int tmp = rand() % dramas.size() + 1;
-            repertuar.add_drama(dramas[tmp]);
+            uniform_int_distribution<> dist(1, (int)dramas.size());
+            repertuar.add_drama(dramas[dist(gen)]);
         }
         else if (x == 4)
         {
-            int tmp = rand() % tragedies.size() + 1;
-            repertuar.add_tragedy(tragedies[tmp]);
+            uniform_int_distribution<> dist(1, (int)tragedies.size());
+            repertuar.add_tragedy(tragedies[dist(gen)]);
         }
         else
         {
