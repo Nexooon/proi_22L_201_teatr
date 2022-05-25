@@ -1,0 +1,8 @@
+Adam
+1 hall
+Marek
+1 hall
+Piotr
+2 base 0
+Darek
+2 tickets 0

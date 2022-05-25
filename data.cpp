@@ -11,6 +11,8 @@
 #include "date.h"
 #include "repertuar.h"
 #include "theatre.h"
+#include "worker.h"
+#include "usher.h"
 
 using namespace std;
 
@@ -96,6 +98,35 @@ void Data::read_plays(string path)
     file.close();
 }
 
+void Data::read_workers(string path)
+{
+    fstream file;
+    file.open(path, ios::in);
+
+    if (file.good() == false)
+    {
+        throw invalid_argument("File does not exist!");
+        exit(0);
+    }
+    string name, obligation, sold_tickets, type;
+    while (file >> name)
+    {
+        file >> type;
+        file >> obligation;
+
+        if (type == "1")
+        {
+            add_worker(name, obligation);
+        }
+        if (type == "2")
+        {
+            file >> sold_tickets;
+            add_usher(name, obligation, stoi(sold_tickets));
+        }
+    }
+    file.close();
+}
+
 int Data::halls_size()
 {
     return halls.size();
@@ -119,6 +150,23 @@ int Data::dramas_size()
 int Data::tragedies_size()
 {
     return tragedies.size();
+}
+
+int Data::workers_size()
+{
+    return workers_list.size();
+}
+
+void Data::add_worker(string name, string obligation)
+{
+    unique_ptr<Worker> added_worker = make_unique<Worker>(name, obligation);
+    workers_list.push_back(move(added_worker));
+}
+
+void Data::add_usher(string name, string obligation, int sold_tickets)
+{
+    unique_ptr<Usher> added_usher = make_unique<Usher>(name, obligation, sold_tickets);
+    workers_list.push_back(move(added_usher));
 }
 
 void Data::add_random_play_to_repertuar(Repertuar repertuar) // adds 2 plays
