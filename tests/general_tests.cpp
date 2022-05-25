@@ -1,20 +1,20 @@
 #include "catch.hpp"
 
 #include "../comedy.h"
-#include "../data.h"    //problems with add_random_play_to_repertuar - wywolanie metody powoduje blad kompilacji
+#include "../data.h" //problems with add_random_play_to_repertuar - wywolanie metody powoduje blad kompilacji
 #include "../date.h"
 #include "../drama.h"
-#include "../hall.h"    //done
-#include "../invalid_day_exception.h"   //done
+#include "../hall.h"                  //done
+#include "../invalid_day_exception.h" //done
 #include "../play.h"
 // #include "../reduced_ticket_children.h"
 // #include "../reduced_ticket_student.h"
 #include "../regular_ticket.h"
-#include "../repertuar.h"   //done
+#include "../repertuar.h" //done
 #include "../theatre.h"
 #include "../tragedy.h"
-#include "../usher.h"   //done
-#include "../worker.h"  //done
+#include "../usher.h"  //done
+#include "../worker.h" //done
 
 using namespace std;
 
@@ -52,7 +52,6 @@ TEST_CASE("data tests", "[data]")
     // CHECK(rep.plays_list.size() == 1);
     // list<unique_ptr<Play>>::iterator i = rep.plays_list.begin();
     // CHECK((*i)->get_title() == play.get_title());
-
 }
 
 TEST_CASE("Hall tests", "[hall]")
@@ -149,5 +148,122 @@ TEST_CASE("usher tests", "[usher]")
         usher.modify_schedule("Monday", "10:00 - 12:00");
         CHECK(usher.get_day_hours("Monday") == "10:00 - 12:00");
         REQUIRE_THROWS_AS(usher.modify_schedule("Sunday", "12:00 - 14:00"), InvalidDayException);
+    }
+}
+
+TEST_CASE("play simple tests")
+{
+    Play play("Dasa", 90, 3);
+
+    CHECK(play.get_title() == "Dasa");
+    CHECK(play.get_price() == 90);
+    CHECK(play.get_duration() == 3);
+
+    SECTION("test setters")
+    {
+        play.set_title("Mala");
+        play.set_price(100);
+        play.set_duration(4);
+
+        CHECK(play.get_title() == "Mala");
+        CHECK(play.get_price() == 100);
+        CHECK(play.get_duration() == 4);
+    }
+}
+
+TEST_CASE("comedy simple tests")
+{
+    Comedy comedy("Manga", 100, 10, 5);
+
+    CHECK(comedy.get_title() == "Manga");
+    CHECK(comedy.get_price() == 100);
+    CHECK(comedy.get_duration() == 10);
+    CHECK(comedy.get_nfunny_scenes() == 5);
+
+    SECTION("test setters")
+    {
+        comedy.set_price(200);
+        CHECK(comedy.get_title() == "Manga");
+        CHECK(comedy.get_price() == 200);
+        CHECK(comedy.get_duration() == 10);
+        CHECK(comedy.get_nfunny_scenes() == 5);
+
+        comedy.set_duration(6);
+        CHECK(comedy.get_title() == "Manga");
+        CHECK(comedy.get_price() == 200);
+        CHECK(comedy.get_duration() == 6);
+        CHECK(comedy.get_nfunny_scenes() == 5);
+
+        comedy.set_title("Taraa");
+        CHECK(comedy.get_title() == "Taraa");
+        CHECK(comedy.get_price() == 200);
+        CHECK(comedy.get_duration() == 6);
+        CHECK(comedy.get_nfunny_scenes() == 5);
+
+        comedy.set_nfunny_scenes(7);
+        CHECK(comedy.get_title() == "Taraa");
+        CHECK(comedy.get_price() == 200);
+        CHECK(comedy.get_duration() == 6);
+        CHECK(comedy.get_nfunny_scenes() == 7);
+    }
+}
+
+TEST_CASE("drama simple tests")
+{
+    Drama drama1("Dasa", 90, 3, "double kill");
+
+    CHECK(drama1.get_title() == "Dasa");
+    CHECK(drama1.get_price() == 90);
+    CHECK(drama1.get_duration() == 3);
+    CHECK(drama1.get_main_drama_thread() == "double kill");
+
+    SECTION("test setters")
+    {
+        drama1.set_title("Mala");
+        drama1.set_price(100);
+        drama1.set_duration(4);
+        drama1.set_main_drama_thread("murder");
+
+        CHECK(drama1.get_title() == "Mala");
+        CHECK(drama1.get_price() == 100);
+        CHECK(drama1.get_duration() == 4);
+        CHECK(drama1.get_main_drama_thread() == "murder");
+    }
+}
+
+TEST_CASE("tragedy simple tests")
+{
+    Tragedy tragedyy("Manga", 100, 10, "Mosa");
+
+    CHECK(tragedyy.get_title() == "Manga");
+    CHECK(tragedyy.get_price() == 100);
+    CHECK(tragedyy.get_duration() == 10);
+    CHECK(tragedyy.get_tragic_character_name() == "Mosa");
+
+    SECTION("test setters")
+    {
+        tragedyy.set_price(200);
+        CHECK(tragedyy.get_title() == "Manga");
+        CHECK(tragedyy.get_price() == 200);
+        CHECK(tragedyy.get_duration() == 10);
+        CHECK(tragedyy.get_tragic_character_name() == "Mosa");
+
+        tragedyy.set_duration(6);
+        CHECK(tragedyy.get_title() == "Manga");
+        CHECK(tragedyy.get_price() == 200);
+        CHECK(tragedyy.get_duration() == 6);
+        CHECK(tragedyy.get_tragic_character_name() == "Mosa");
+
+        tragedyy.set_title("Taraa");
+        CHECK(tragedyy.get_title() == "Taraa");
+        CHECK(tragedyy.get_price() == 200);
+        CHECK(tragedyy.get_duration() == 6);
+        CHECK(tragedyy.get_tragic_character_name() == "Mosa");
+
+        tragedyy.set_tragic_charactesr_name("Jaba");
+        CHECK(tragedyy.get_title() == "Taraa");
+        CHECK(tragedyy.get_price() == 200);
+        CHECK(tragedyy.get_duration() == 6);
+        CHECK(tragedyy.get_tragic_character_name() == "Jaba");
     }
 }
