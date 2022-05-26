@@ -25,18 +25,18 @@ using namespace std;
 //     tragedies = t;
 // }
 
-Data::Data(vector<Hall> h, list<shared_ptr<Play>> p, list<shared_ptr<Worker>> w)
+Data::Data(vector<Hall> h, vector<shared_ptr<Play>> p, vector<shared_ptr<Worker>> w)
 {
     halls = h;
-    plays_list = p;
-    workers_list = w;
+    plays = p;
+    workers = w;
 }
 
 Data::Data(const Data *d)
 {
     halls = d->halls;
-    plays_list = d->plays_list;
-    workers_list = d->workers_list;
+    plays = d->plays;
+    workers = d->workers;
 }
 
 Data::~Data(){};
@@ -138,7 +138,7 @@ int Data::halls_size()
 
 int Data::plays_size()
 {
-    return plays_list.size();
+    return plays.size();
 }
 
 // int Data::comedies_size()
@@ -158,76 +158,55 @@ int Data::plays_size()
 
 int Data::workers_size()
 {
-    return workers_list.size();
+    return workers.size();
 }
 
 void Data::add_play(string title, unsigned int price, unsigned int duration)
 {
-    shared_ptr<Play> added_play = make_shared<Play>(title, price, duration);
-    plays_list.push_back(move(added_play));
+    Play *play_object = new Play(title, price, duration);
+    plays.emplace_back(play_object);
 }
 
 void Data::add_comedy(string title, unsigned int price, unsigned int duration, unsigned int nfunny_scenes)
 {
-    shared_ptr<Comedy> added_comedy = make_shared<Comedy>(title, price, duration, nfunny_scenes);
-    plays_list.push_back(move(added_comedy));
+    Comedy *comedy_object = new Comedy(title, price, duration, nfunny_scenes);
+    plays.emplace_back(comedy_object);
 }
 
 void Data::add_drama(string title, unsigned int price, unsigned int duration, string main_drama_thread)
 {
-    shared_ptr<Drama> added_drama = make_shared<Drama>(title, price, duration, main_drama_thread);
-    plays_list.push_back(move(added_drama));
+    Drama *drama_object = new Drama(title, price, duration, main_drama_thread);
+    plays.emplace_back(drama_object);
 }
 
 void Data::add_tragedy(string title, unsigned int price, unsigned int duration, string tragic_character_name)
 {
-    shared_ptr<Tragedy> added_tragedy = make_shared<Tragedy>(title, price, duration, tragic_character_name);
-    plays_list.push_back(move(added_tragedy));
+    Tragedy *tragedy_object = new Tragedy(title, price, duration, tragic_character_name);
+    plays.emplace_back(tragedy_object);
 }
 
 void Data::add_worker(string name, string obligation)
 {
-    shared_ptr<Worker> added_worker = make_shared<Worker>(name, obligation);
-    workers_list.push_back(move(added_worker));
+    Worker *worker_object = new Worker(name, obligation);
+    workers.emplace_back(worker_object);
 }
 
 void Data::add_usher(string name, string obligation, int sold_tickets)
 {
-    shared_ptr<Usher> added_usher = make_shared<Usher>(name, obligation, sold_tickets);
-    workers_list.push_back(move(added_usher));
+    Usher *usher_object = new Usher(name, obligation, sold_tickets);
+    workers.emplace_back(usher_object);
 }
 
-// void Data::add_random_play_to_repertuar(Repertuar repertuar) // adds 2 plays
-// {
-//     for (int i = 0; i < 2; i++)
-//     {
-//         random_device rd;
-//         mt19937 gen(rd());
-//         uniform_int_distribution<> dist(1, 6);
-//         int x = dist(gen);
-//         if (x == 1)
-//         {
-//             uniform_int_distribution<> dist(1, (int)plays.size());
-//             repertuar.add_play(plays[dist(gen)]);
-//         }
-//         else if (x == 2)
-//         {
-//             uniform_int_distribution<> dist(1, (int)comedies.size());
-//             repertuar.add_comedy(comedies[dist(gen)]);
-//         }
-//         else if (x == 3)
-//         {
-//             uniform_int_distribution<> dist(1, (int)dramas.size());
-//             repertuar.add_drama(dramas[dist(gen)]);
-//         }
-//         else if (x == 4)
-//         {
-//             uniform_int_distribution<> dist(1, (int)tragedies.size());
-//             repertuar.add_tragedy(tragedies[dist(gen)]);
-//         }
-//         else
-//         {
-//             throw invalid_argument("Adding random doesnt work right!");
-//         }
-//     }
-// }
+Repertuar Data::add_random_play_to_repertuar(Repertuar repertuar) // adds 2 plays
+{
+    int x;
+    for (int i = 0; i < 2; i++)
+    {
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<> dist(0, plays.size() - 1);
+        x = dist(gen);
+        repertuar.add_play(plays.at(x));
+    }
+    return repertuar;
+}

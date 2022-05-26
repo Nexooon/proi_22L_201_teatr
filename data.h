@@ -21,16 +21,11 @@ class Data
 {
 protected:
     vector<Hall> halls;
-    // vector<Play> plays;
-    // vector<Comedy> comedies;
-    // vector<Drama> dramas;
-    // vector<Tragedy> tragedies;
-    list<shared_ptr<Play>> plays_list;
-    list<shared_ptr<Worker>> workers_list;
+    vector<shared_ptr<Play>> plays;
+    vector<shared_ptr<Worker>> workers;
 
 public:
-    // Data(vector<Hall> halls, vector<Play> plays, vector<Comedy> comedies, vector<Drama> dramas, vector<Tragedy> tragedies);
-    Data(vector<Hall> halls, list<shared_ptr<Play>> plays_list, list<shared_ptr<Worker>> workers_list);
+    Data(vector<Hall> halls, vector<shared_ptr<Play>> plays, vector<shared_ptr<Worker>> workers);
     Data(const Data *data);
     virtual ~Data();
 
@@ -40,9 +35,6 @@ public:
 
     int halls_size();
     int plays_size();
-    // int comedies_size();
-    // int dramas_size();
-    // int tragedies_size();
     int workers_size();
 
     void add_play(string title, unsigned int price, unsigned int duration);
@@ -52,7 +44,7 @@ public:
     void add_worker(string name, string obligation);
     void add_usher(string name, string obligation, int sold_tickets);
 
-    void add_random_play_to_repertuar(Repertuar repertuar);
+    Repertuar add_random_play_to_repertuar(Repertuar repertuar);
 };
 
 #endif

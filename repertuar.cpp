@@ -1,10 +1,14 @@
 #include <iostream>
 #include <list>
-#include "repertuar.h"
+#include "data.h"
 #include "play.h"
 #include "comedy.h"
 #include "drama.h"
 #include "tragedy.h"
+#include "hall.h"
+#include "date.h"
+#include "repertuar.h"
+#include "theatre.h"
 
 using namespace std;
 
@@ -15,42 +19,38 @@ Repertuar::Repertuar(Hall h)
 
 Repertuar::~Repertuar(){};
 
-void Repertuar::add_play(Play play)
+void Repertuar::add_play(shared_ptr<Play> play)
 {
-    unique_ptr<Play> added_play = make_unique<Play>(play.get_title(), play.get_price(), play.get_duration());
-    plays_list.push_back(move(added_play));
+    plays.push_back(move(play));
 }
 
-void Repertuar::add_comedy(Comedy comedy)
+void Repertuar::add_comedy(shared_ptr<Comedy> comedy)
 {
-    unique_ptr<Comedy> added_comedy = make_unique<Comedy>(comedy.get_title(), comedy.get_price(), comedy.get_duration(), comedy.get_nfunny_scenes());
-    plays_list.push_back(move(added_comedy));
+    plays.push_back(move(comedy));
 }
 
-void Repertuar::add_drama(Drama drama)
+void Repertuar::add_drama(shared_ptr<Drama> drama)
 {
-    unique_ptr<Drama> added_drama = make_unique<Drama>(drama.get_title(), drama.get_price(), drama.get_duration(), drama.get_main_drama_thread());
-    plays_list.push_back(move(added_drama));
+    plays.push_back(move(drama));
 }
 
-void Repertuar::add_tragedy(Tragedy tragedy)
+void Repertuar::add_tragedy(shared_ptr<Tragedy> tragedy)
 {
-    unique_ptr<Tragedy> added_tragedy = make_unique<Tragedy>(tragedy.get_title(), tragedy.get_price(), tragedy.get_duration(), tragedy.get_tragic_character_name());
-    plays_list.push_back(move(added_tragedy));
+    plays.push_back(move(tragedy));
 }
 
 void Repertuar::print_repertuar()
 {
     cout << "Hall number: " << hall_obj.get_number() << endl;
-    for (list<unique_ptr<Play>>::iterator i = plays_list.begin(); i != plays_list.end(); i++)
+    cout << "Titles:" << endl;
+    for (const auto &play_ptr : plays)
     {
-        cout << (*i)->get_title() << endl;
+        cout << play_ptr->get_title() << endl;
     }
 }
 
 void Repertuar::print_summary()
 {
     cout << "Hall number: " << hall_obj.get_number() << endl;
-    ;
     cout << "Seats" << hall_obj.get_taken_seats() << "/" << hall_obj.get_seats() << endl;
 }
