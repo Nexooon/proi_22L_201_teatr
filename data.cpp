@@ -210,3 +210,13 @@ Repertuar Data::add_random_play_to_repertuar(Repertuar repertuar) // adds 2 play
     }
     return repertuar;
 }
+
+// Hall Data::get_random_hall()
+// {
+//     int x;
+//     random_device rd;
+//     mt19937 gen(rd());
+//     uniform_int_distribution<> dist(0, halls.size() - 1);
+//     x = dist(gen);
+//     return halls.at(x);
+// }
