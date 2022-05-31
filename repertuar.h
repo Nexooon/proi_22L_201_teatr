@@ -5,24 +5,28 @@
 #include <vector>
 #include <list>
 #include <memory>
-#include "data.h"
+// #include "data.h"
+// #include "theatre.h"
 #include "play.h"
 #include "comedy.h"
 #include "drama.h"
 #include "tragedy.h"
 #include "hall.h"
-#include "date.h"
-#include "theatre.h"
+// #include "date.h"
+#include "repertuar.h"
+// #include "worker.h"
+// #include "usher.h"
 
 using namespace std;
 
 class Repertuar
 {
-public:
+protected:
     Hall hall_obj;
 
     vector<shared_ptr<Play>> plays;
 
+public:
     Repertuar(Hall hall);
     ~Repertuar();
 

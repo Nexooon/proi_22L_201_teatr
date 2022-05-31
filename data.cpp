@@ -3,6 +3,8 @@
 #include <list>
 #include <random>
 #include "data.h"
+#include "theatre.h"
+#include "data.h"
 #include "play.h"
 #include "comedy.h"
 #include "drama.h"
@@ -10,20 +12,10 @@
 #include "hall.h"
 #include "date.h"
 #include "repertuar.h"
-#include "theatre.h"
 #include "worker.h"
 #include "usher.h"
 
 using namespace std;
-
-// Data::Data(vector<Hall> h, vector<Play> p, vector<Comedy> c, vector<Drama> d, vector<Tragedy> t)
-// {
-//     halls = h;
-//     plays = p;
-//     comedies = c;
-//     dramas = d;
-//     tragedies = t;
-// }
 
 Data::Data(vector<Hall> h, vector<shared_ptr<Play>> p, vector<shared_ptr<Worker>> w)
 {
@@ -141,21 +133,6 @@ int Data::plays_size()
     return plays.size();
 }
 
-// int Data::comedies_size()
-// {
-//     return comedies.size();
-// }
-
-// int Data::dramas_size()
-// {
-//     return dramas.size();
-// }
-
-// int Data::tragedies_size()
-// {
-//     return tragedies.size();
-// }
-
 int Data::workers_size()
 {
     return workers.size();
@@ -197,7 +174,7 @@ void Data::add_usher(string name, string obligation, int sold_tickets)
     workers.emplace_back(usher_object);
 }
 
-Repertuar Data::add_random_play_to_repertuar(Repertuar repertuar) // adds 2 plays
+void Data::add_random_play_to_repertuar(Repertuar &repertuar) // adds 2 plays
 {
     int x;
     for (int i = 0; i < 2; i++)
@@ -208,7 +185,6 @@ Repertuar Data::add_random_play_to_repertuar(Repertuar repertuar) // adds 2 play
         x = dist(gen);
         repertuar.add_play(plays.at(x));
     }
-    return repertuar;
 }
 
 // Hall Data::get_random_hall()

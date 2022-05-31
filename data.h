@@ -9,9 +9,9 @@
 #include "drama.h"
 #include "tragedy.h"
 #include "hall.h"
-#include "date.h"
+// #include "date.h"
 #include "repertuar.h"
-#include "theatre.h"
+// #include "theatre.h"
 #include "worker.h"
 #include "usher.h"
 
@@ -44,8 +44,7 @@ public:
     void add_worker(string name, string obligation);
     void add_usher(string name, string obligation, int sold_tickets);
 
-    Repertuar add_random_play_to_repertuar(Repertuar repertuar);
-    // Hall get_random_hall();
+    void add_random_play_to_repertuar(Repertuar &repertuar);
 };
 
 #endif
