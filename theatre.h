@@ -25,6 +25,8 @@ protected:
 
 public:
     Theatre(vector<Hall> halls, vector<shared_ptr<Play>> plays, vector<shared_ptr<Worker>> workers);
+    Repertuar create_random_repertuar();
+
 };
 
 #endif

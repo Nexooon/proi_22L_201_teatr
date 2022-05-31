@@ -45,6 +45,7 @@ public:
     void add_usher(string name, string obligation, int sold_tickets);
 
     void add_random_play_to_repertuar(Repertuar &repertuar);
+    Hall get_random_hall();
 };
 
 #endif
