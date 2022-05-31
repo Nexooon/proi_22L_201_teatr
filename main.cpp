@@ -1,10 +1,17 @@
 #include <iostream>
 #include <sstream>
 #include "data.h"
+#include "theatre.h"
+#include "data.h"
 #include "play.h"
+#include "comedy.h"
+#include "drama.h"
+#include "tragedy.h"
 #include "hall.h"
 #include "date.h"
-#include "theatre.h"
+#include "repertuar.h"
+#include "worker.h"
+#include "usher.h"
 
 using namespace std;
 
@@ -12,9 +19,9 @@ int main(int argc, char *argv[])
 {
     if (argc < 3)
     {
-        cerr << "Incorrect number of command line arguments, expected 2, got " << argc - 1 << endl;
+        cerr << "Incorrect number of command line arguments, expected 3, got " << argc - 1 << endl;
     }
-    string path1, path2;
+    string path1, path2, path3;
 
     stringstream stream;
 
@@ -26,39 +33,30 @@ int main(int argc, char *argv[])
     stream >> path2;
     stream.clear();
 
+    stream << argv[3];
+    stream >> path3;
+    stream.clear();
+
     vector<Hall> halls;
-    vector<Play> plays;
-    vector<Comedy> comedies;
-    vector<Drama> dramas;
-    vector<Tragedy> tragedies;
-    Data data(halls, plays, comedies, dramas, tragedies);
+    vector<shared_ptr<Play>> plays;
+    vector<shared_ptr<Worker>> workers;
+    Data data(halls, plays, workers);
 
     Date date(1, 5, 2010);
     ++date;
 
-    // Theatre theatre(data);
-
     data.read_halls(path1);
     data.read_plays(path2);
+    data.read_workers(path3);
 
-    // cout << data.halls_size();
-    // cout << data.plays_size();
-    // cout << data.comedies_size();
-    // cout << data.dramas_size();
-    // cout << data.tragedies_size();
+    Hall hall(1, 50, 0);
+    Repertuar repertuar(hall);
+
+    // repertuar.print_repertuar();
+    data.add_random_play_to_repertuar(repertuar);
+    repertuar.print_repertuar();
+
+    // cout << data.workers_size() << endl;
+    // cout << data.halls_size() << endl;
+    // cout << data.plays_size() << endl;
 }
-
-// int main()
-// {
-//     // string path1 = "C:\Users\kamil\OneDrive\Pulpit\PROI\teatr\halls.txt";
-//     string path1 = "halls.txt";
-//     string path2 = "plays.txt";
-//     // string path2 = "C:\Users\kamil\OneDrive\Pulpit\PROI\teatr\plays.txt";
-//     vector<Hall> halls;
-//     vector<Play> plays;
-//     Data data(halls, plays);
-//     data.read(path1);
-//     data.read(path2);
-
-//     cout << data.halls_size();
-// }

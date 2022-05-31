@@ -1,5 +1,8 @@
 #include <iostream>
 #include <list>
+#include "repertuar.h"
+#include "data.h"
+#include "theatre.h"
 #include "data.h"
 #include "play.h"
 #include "comedy.h"
@@ -7,8 +10,8 @@
 #include "tragedy.h"
 #include "hall.h"
 #include "date.h"
-#include "repertuar.h"
-#include "theatre.h"
+#include "worker.h"
+#include "usher.h"
 
 using namespace std;
 
@@ -45,7 +48,7 @@ void Repertuar::print_repertuar()
     cout << "Titles:" << endl;
     for (const auto &play_ptr : plays)
     {
-        cout << play_ptr->get_title() << endl;
+        cout << "    " << play_ptr->get_title() << endl;
     }
 }
 
