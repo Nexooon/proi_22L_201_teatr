@@ -10,13 +10,15 @@ class Hall
     unsigned int number, seats, taken;
 
 public:
-    Hall(unsigned int number=1, unsigned int seats=50, unsigned int taken=0);
+    Hall(unsigned int number = 1, unsigned int seats = 50, unsigned int taken = 0);
     virtual ~Hall();
     // Hall();
 
     unsigned int get_number();
     unsigned int get_seats();
     unsigned int get_taken_seats();
+
+    Hall &operator++();
 
     void set_number(unsigned int new_number);
     void set_seats(unsigned int new_seats);

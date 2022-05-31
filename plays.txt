@@ -8,7 +8,7 @@ Dungo
 100 50 3 murder
 Lana
 110 60 4 Jack
-Hustecznik
+Chustecznik
 120 100 2 4
 Rama
 120 80 3 double_kill

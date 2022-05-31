@@ -13,12 +13,13 @@
 
 using namespace std;
 
-// Theatre::Theatre(Data &data)
-// {
-//     data = &data;
-// }
+Theatre::Theatre(Data &dataa, Date d)
+{
+    data = dataa;
+    date = d;
+}
 
-// Theatre::~Theatre(){};
+Theatre::~Theatre(){};
 
 // create repertuar
 // choose hall randomly and create repertuar,
@@ -27,10 +28,30 @@ using namespace std;
 
 Repertuar Theatre::create_random_repertuar()
 {
-    Hall hall = get_random_hall();
+    Hall hall = data.get_random_hall();
     Repertuar rep(hall);
-    add_random_play_to_repertuar(rep);
+    data.add_random_play_to_repertuar(rep);
     repertuars.push_back(rep);
     rep.print_repertuar();
     return rep;
+}
+
+void Theatre::simulation()
+{
+    for (int j = 0; j < 5; j++) // how many days
+    {
+        cout << "Today's date ";
+        date.show();
+        cout << endl
+             << endl;
+        for (int i = 0; i < 2; i++)
+        {
+            Repertuar repertuar = create_random_repertuar();
+            data.buy_a_ticket(repertuar);
+            repertuar.print_summary();
+            cout << endl;
+        }
+        cout << endl;
+        ++date;
+    }
 }

@@ -15,18 +15,23 @@
 #include "repertuar.h"
 #include "worker.h"
 #include "usher.h"
+// #include "person.h"
 
 using namespace std;
 
-class Theatre : public Data
+class Theatre
 {
 protected:
+    Data data;
     vector<Repertuar> repertuars;
+    Date date;
 
 public:
-    Theatre(vector<Hall> halls, vector<shared_ptr<Play>> plays, vector<shared_ptr<Worker>> workers);
+    Theatre(Data &data, Date date);
+    virtual ~Theatre();
     Repertuar create_random_repertuar();
 
+    void simulation();
 };
 
 #endif

@@ -14,6 +14,12 @@ Hall::~Hall(){};
 
 // Hall::Hall(){};
 
+Hall &Hall::operator++()
+{
+    taken++;
+    return *this;
+}
+
 unsigned int Hall::get_number()
 {
     return number;

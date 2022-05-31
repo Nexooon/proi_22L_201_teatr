@@ -12,7 +12,7 @@
 #include "drama.h"
 #include "tragedy.h"
 #include "hall.h"
-// #include "date.h"
+#include "date.h"
 #include "repertuar.h"
 // #include "worker.h"
 // #include "usher.h"
@@ -23,12 +23,13 @@ class Repertuar
 {
 protected:
     Hall hall_obj;
-
     vector<shared_ptr<Play>> plays;
 
 public:
     Repertuar(Hall hall);
     ~Repertuar();
+
+    int get_hall_max_seats();
 
     void add_play(shared_ptr<Play> play);
     void add_comedy(shared_ptr<Comedy> comedy);

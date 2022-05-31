@@ -22,6 +22,11 @@ Repertuar::Repertuar(Hall h)
 
 Repertuar::~Repertuar(){};
 
+int Repertuar::get_hall_max_seats()
+{
+    return hall_obj.get_seats();
+}
+
 void Repertuar::add_play(shared_ptr<Play> play)
 {
     plays.push_back(move(play));
@@ -45,15 +50,17 @@ void Repertuar::add_tragedy(shared_ptr<Tragedy> tragedy)
 void Repertuar::print_repertuar()
 {
     cout << "Hall number: " << hall_obj.get_number() << endl;
-    cout << "Titles:" << endl;
+    cout << "Title:" << endl;
     for (const auto &play_ptr : plays)
     {
         cout << "    " << play_ptr->get_title() << endl;
     }
+    cout << endl;
 }
 
 void Repertuar::print_summary()
 {
-    cout << "Hall number: " << hall_obj.get_number() << endl;
-    cout << "Seats" << hall_obj.get_taken_seats() << "/" << hall_obj.get_seats() << endl;
+    // cout << "Hall number: " << hall_obj.get_number() << endl;
+    cout << endl
+         << "Seats " << hall_obj.get_taken_seats() << "/" << hall_obj.get_seats() << endl;
 }
