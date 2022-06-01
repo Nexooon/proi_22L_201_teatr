@@ -14,6 +14,8 @@
 #include "repertuar.h"
 #include "worker.h"
 #include "usher.h"
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -239,12 +241,14 @@ void Data::buy_a_ticket(Repertuar &repertuar)
     mt19937 gen(rd());
     uniform_int_distribution<> dist(0, repertuar.get_hall_max_seats() - 1);
     x = dist(gen);
+    chrono::milliseconds timespan(500);
 
     for (int i = 0; i < x; i++)
     {
         uniform_int_distribution<> dist(0, (int)people.size() - 1);
         y = dist(gen);
         cout << people.at(y) << "bought a ticket." << endl;
+        this_thread::sleep_for(timespan);
         ++repertuar;
     }
 }

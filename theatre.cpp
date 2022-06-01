@@ -11,6 +11,8 @@
 #include "worker.h"
 #include "usher.h"
 #include "data.h"
+#include <chrono>
+#include <thread>
 
 using namespace std;
 
@@ -39,18 +41,22 @@ Repertuar Theatre::create_random_repertuar()
 
 void Theatre::simulation()
 {
-    freopen("C:\\Users\\kamil\\OneDrive\\Pulpit\\PROI\\teatr\\simulation_output.txt", "w", stdout);
+    // freopen("C:\\Users\\kamil\\OneDrive\\Pulpit\\PROI\\teatr\\simulation_output.txt", "w", stdout);
+    chrono::milliseconds timespan(1000);
     for (int j = 0; j < 5; j++) // how many days
     {
         cout << "Today's date ";
         date.show();
+        this_thread::sleep_for(timespan);
         cout << endl
              << endl;
         for (int i = 0; i < 2; i++)
         {
             Repertuar repertuar = create_random_repertuar();
+            this_thread::sleep_for(timespan);
             data.buy_a_ticket(repertuar);
             repertuar.print_summary();
+            this_thread::sleep_for(timespan);
             cout << endl;
         }
         cout << endl;
