@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 #include "play.h"
 #include "comedy.h"
 #include "drama.h"
@@ -38,6 +39,7 @@ Repertuar Theatre::create_random_repertuar()
 
 void Theatre::simulation()
 {
+    freopen("C:\\Users\\kamil\\OneDrive\\Pulpit\\PROI\\teatr\\simulation_output.txt", "w", stdout);
     for (int j = 0; j < 5; j++) // how many days
     {
         cout << "Today's date ";
