@@ -30,6 +30,9 @@ public:
     ~Repertuar();
 
     int get_hall_max_seats();
+    Hall get_hall_obj();
+
+    Repertuar &operator++();
 
     void add_play(shared_ptr<Play> play);
     void add_comedy(shared_ptr<Comedy> comedy);

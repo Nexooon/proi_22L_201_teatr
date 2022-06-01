@@ -14,7 +14,7 @@ Hall::~Hall(){};
 
 // Hall::Hall(){};
 
-Hall &Hall::operator++()
+Hall Hall::operator++()
 {
     taken++;
     return *this;

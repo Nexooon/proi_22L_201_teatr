@@ -7,9 +7,11 @@ using namespace std;
 
 class Hall
 {
-    unsigned int number, seats, taken;
+protected:
+    unsigned int number, seats;
 
 public:
+    unsigned int taken;
     Hall(unsigned int number = 1, unsigned int seats = 50, unsigned int taken = 0);
     virtual ~Hall();
     // Hall();
@@ -18,7 +20,7 @@ public:
     unsigned int get_seats();
     unsigned int get_taken_seats();
 
-    Hall &operator++();
+    Hall operator++();
 
     void set_number(unsigned int new_number);
     void set_seats(unsigned int new_seats);

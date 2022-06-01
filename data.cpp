@@ -244,7 +244,7 @@ void Data::buy_a_ticket(Repertuar &repertuar)
     {
         uniform_int_distribution<> dist(0, (int)people.size() - 1);
         y = dist(gen);
-        cout << people.at(y) << " bought a ticket." << endl;
-        // repertuar.hall_obj.taken += 1;
+        cout << people.at(y) << "bought a ticket." << endl;
+        ++repertuar;
     }
 }
