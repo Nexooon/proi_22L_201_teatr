@@ -18,11 +18,11 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    if (argc < 3)
+    if (argc < 4)
     {
-        cerr << "Incorrect number of command line arguments, expected 4, got " << argc - 1 << endl;
+        cerr << "Incorrect number of command line arguments, expected 5, got " << argc - 1 << endl;
     }
-    string path1, path2, path3, path4;
+    string path1, path2, path3, path4, d;
 
     stringstream stream;
 
@@ -41,6 +41,11 @@ int main(int argc, char *argv[])
     stream << argv[4];
     stream >> path4;
     stream.clear();
+
+    stream << argv[5];
+    stream >> d;
+    stream.clear();
+    int days = stoi(d);
 
     vector<Hall> halls;
     vector<shared_ptr<Play>> plays;
@@ -65,5 +70,5 @@ int main(int argc, char *argv[])
 
     Theatre theatre(data, date);
 
-    theatre.simulation();
+    theatre.simulation(days);
 }

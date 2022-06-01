@@ -39,11 +39,11 @@ Repertuar Theatre::create_random_repertuar()
     return rep;
 }
 
-void Theatre::simulation()
+void Theatre::simulation(int days)
 {
     // freopen("C:\\Users\\kamil\\OneDrive\\Pulpit\\PROI\\teatr\\simulation_output.txt", "w", stdout);
     chrono::milliseconds timespan(1000);
-    for (int j = 0; j < 5; j++) // how many days
+    for (int j = 0; j < days; j++) // how many days
     {
         cout << "Today's date ";
         date.show();

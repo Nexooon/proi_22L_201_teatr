@@ -31,7 +31,7 @@ public:
     virtual ~Theatre();
     Repertuar create_random_repertuar();
 
-    void simulation();
+    void simulation(int days);
 };
 
 #endif
