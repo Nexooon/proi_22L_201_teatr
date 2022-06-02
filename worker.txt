@@ -6,3 +6,5 @@ Piotr
 2 base 0
 Darek
 2 tickets 0
+Marcin
+2 tickets 10

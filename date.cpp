@@ -1,5 +1,3 @@
-// Kamil Kulak
-
 #include <iostream>
 #include "date.h"
 

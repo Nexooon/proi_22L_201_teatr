@@ -24,11 +24,6 @@ Theatre::Theatre(Data &dataa, Date d)
 
 Theatre::~Theatre(){};
 
-// create repertuar
-// choose hall randomly and create repertuar,
-//  then use method add_random_play_to_repertuar on data using this repertuar to add 2 plays,
-//  at the end push it to the vector, return repertuar and print it
-
 Repertuar Theatre::create_random_repertuar()
 {
     Hall hall = data.get_random_hall();

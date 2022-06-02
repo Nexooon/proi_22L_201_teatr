@@ -12,8 +12,6 @@ Hall::Hall(unsigned int nr, unsigned int s, unsigned int ts)
 
 Hall::~Hall(){};
 
-// Hall::Hall(){};
-
 Hall Hall::operator++()
 {
     taken++;

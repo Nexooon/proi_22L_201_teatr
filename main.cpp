@@ -54,19 +54,11 @@ int main(int argc, char *argv[])
     Data data(halls, plays, workers, people);
 
     Date date(1, 5, 2010);
-    ++date;
 
     data.read_halls(path1);
     data.read_plays(path2);
     data.read_workers(path3);
     data.read_people(path4);
-
-    // Hall hall(1, 50, 0);
-    // Repertuar repertuar(hall);
-
-    // repertuar.print_repertuar();
-    // data.add_random_play_to_repertuar(repertuar);
-    // repertuar.print_repertuar();
 
     Theatre theatre(data, date);
 

@@ -5,8 +5,6 @@
 #include <vector>
 #include <list>
 #include <memory>
-// #include "data.h"
-// #include "theatre.h"
 #include "play.h"
 #include "comedy.h"
 #include "drama.h"
@@ -14,8 +12,6 @@
 #include "hall.h"
 #include "date.h"
 #include "repertuar.h"
-// #include "worker.h"
-// #include "usher.h"
 
 using namespace std;
 

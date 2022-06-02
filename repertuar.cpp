@@ -13,7 +13,6 @@
 #include "worker.h"
 #include "usher.h"
 
-
 using namespace std;
 
 Repertuar::Repertuar(Hall h)
