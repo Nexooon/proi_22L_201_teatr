@@ -6,6 +6,7 @@
 #include "../drama.h"
 #include "../hall.h"                  //done
 #include "../invalid_day_exception.h" //done
+#include "../person.h"
 #include "../play.h"
 // #include "../reduced_ticket_children.h"
 // #include "../reduced_ticket_student.h"
@@ -22,36 +23,21 @@ TEST_CASE("data tests", "[data]")
 {
     Hall hall;
     Play play;
-    Comedy comedy("com", 11, 120, 5);
-    Drama drama("title", 12, 100, "murder");
-    Tragedy tragedy("tra", 55, 230, "Jack");
 
     vector<Hall> halls;
-    vector<Play> plays;
-    vector<Comedy> comedies;
-    vector<Drama> dramas;
-    vector<Tragedy> tragedies;
+    vector<shared_ptr<Play>> plays;
+    vector<shared_ptr<Worker>> workers;
+    vector<Person> people;
 
     halls.push_back(hall);
-    plays.push_back(play);
-    comedies.push_back(comedy);
-    dramas.push_back(drama);
-    tragedies.push_back(tragedy);
 
-    Data data(halls, plays, comedies, dramas, tragedies);
+    Data data(halls, plays, workers, people);
+    data.add_comedy("com", 11, 120, 5);
+    data.add_drama("title", 12, 100, "murder");
+    data.add_tragedy("tra", 55, 230, "Jack");
 
     CHECK(data.halls_size() == 1);
-    CHECK(data.plays_size() == 1);
-    CHECK(data.comedies_size() == 1);
-    CHECK(data.dramas_size() == 1);
-    CHECK(data.tragedies_size() == 1);
-
-    Repertuar rep(halls.at(0));
-    CHECK(rep.plays_list.size() == 0);
-    // data.add_random_play_to_repertuar(rep);
-    // CHECK(rep.plays_list.size() == 1);
-    // list<unique_ptr<Play>>::iterator i = rep.plays_list.begin();
-    // CHECK((*i)->get_title() == play.get_title());
+    CHECK(data.plays_size() == 3);
 }
 
 TEST_CASE("Hall tests", "[hall]")
@@ -76,38 +62,6 @@ TEST_CASE("Hall tests", "[hall]")
         hall.set_taken_seats(55);
         CHECK(hall.get_taken_seats() == 55);
     }
-}
-
-TEST_CASE("Repertuar tests", "[repertuar]")
-{
-    Hall hall(1, 100, 0);
-    Play play;
-    Drama drama("title", 12, 100, "murder");
-    Comedy comedy("com", 11, 120, 5);
-    Tragedy tragedy("tra", 55, 230, "Jack");
-
-    Repertuar rep(hall);
-
-    CHECK(rep.plays_list.size() == 0);
-    rep.add_play(play);
-    CHECK(rep.plays_list.size() == 1);
-    list<unique_ptr<Play>>::iterator i = rep.plays_list.begin();
-    CHECK((*i)->get_title() == play.get_title());
-
-    rep.add_comedy(comedy);
-    CHECK(rep.plays_list.size() == 2);
-    i++;
-    CHECK((*i)->get_title() == comedy.get_title());
-
-    rep.add_drama(drama);
-    CHECK(rep.plays_list.size() == 3);
-    i++;
-    CHECK((*i)->get_title() == drama.get_title());
-
-    rep.add_tragedy(tragedy);
-    CHECK(rep.plays_list.size() == 4);
-    i++;
-    CHECK((*i)->get_title() == tragedy.get_title());
 }
 
 TEST_CASE("worker tests", "[worker]")
